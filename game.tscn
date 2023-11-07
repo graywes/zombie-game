@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://bjhdatq1hyiyd"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_madr5"]
+[ext_resource type="Script" path="res://shoot.gd" id="2_fh18r"]
+[ext_resource type="Script" path="res://cam.gd" id="3_juojs"]
+[ext_resource type="PackedScene" uid="uid://dy33b3ywj0nj2" path="res://bullet.tscn" id="4_7fa4x"]
+[ext_resource type="PackedScene" uid="uid://ceshkegx4qdjf" path="res://zom.tscn" id="4_unbbl"]
+
+[sub_resource type="Gradient" id="Gradient_ykhhy"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.63871)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5qxu3"]
+gradient = SubResource("Gradient_ykhhy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.880734, 0.206422)
+
+[sub_resource type="Animation" id="Animation_tawrm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iwy8h"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.153893, 1),
+"update": 0,
+"values": [Vector2(0.6, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2mpc3"]
+_data = {
+"RESET": SubResource("Animation_tawrm"),
+"shoot": SubResource("Animation_iwy8h")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jlyp1"]
+radius = 20.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("GradientTexture2D_5qxu3")
+script = ExtResource("1_madr5")
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprite2D"]
+texture_filter = 1
+color = Color(0, 0.431373, 0.682353, 1)
+polygon = PackedVector2Array(0, -5, 38, -5, 38, 5, 0, 5)
+script = ExtResource("2_fh18r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D/Polygon2D"]
+speed_scale = 4.0
+libraries = {
+"": SubResource("AnimationLibrary_2mpc3")
+}
+
+[node name="Node2D" type="Node2D" parent="Sprite2D/Polygon2D"]
+position = Vector2(0, 1)
+
+[node name="Timer" type="Timer" parent="Sprite2D/Polygon2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_jlyp1")
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["cam"]]
+script = ExtResource("3_juojs")
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="zom" parent="." instance=ExtResource("4_unbbl")]
+
+[node name="bullet" parent="." instance=ExtResource("4_7fa4x")]
+
+[connection signal="body_entered" from="Sprite2D/Area2D" to="Sprite2D" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
