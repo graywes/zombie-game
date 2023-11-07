@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjhdatq1hyiyd"]
+[gd_scene load_steps=13 format=3 uid="uid://bjhdatq1hyiyd"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_madr5"]
 [ext_resource type="Script" path="res://shoot.gd" id="2_fh18r"]
 [ext_resource type="Script" path="res://cam.gd" id="3_juojs"]
+[ext_resource type="AudioStream" uid="uid://bdf3sr7oi4q01" path="res://powerUp.wav" id="3_wwuyq"]
 [ext_resource type="PackedScene" uid="uid://dy33b3ywj0nj2" path="res://bullet.tscn" id="4_7fa4x"]
 [ext_resource type="PackedScene" uid="uid://ceshkegx4qdjf" path="res://zom.tscn" id="4_unbbl"]
 
@@ -81,6 +82,9 @@ position = Vector2(0, 1)
 [node name="Timer" type="Timer" parent="Sprite2D/Polygon2D"]
 wait_time = 0.2
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite2D/Polygon2D"]
+stream = ExtResource("3_wwuyq")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]
 

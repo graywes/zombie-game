@@ -5,6 +5,9 @@ var enem = preload("res://zom.tscn")
 func _ready():
 	for enemy in 20:
 		add_sibling.call_deferred(enem.instantiate())
+	if Up.up:
+		$Polygon2D/AudioStreamPlayer.play()
+		Up.up = false
 	pass # Replace with function body.
 
 
@@ -12,6 +15,7 @@ func _ready():
 func _process(delta):
 	$Polygon2D.rotation = get_angle_to(get_global_mouse_position())
 	if get_tree().get_nodes_in_group("zombie").size() == 0:
+		Up.up = true
 		get_tree().reload_current_scene()
 	pass
 

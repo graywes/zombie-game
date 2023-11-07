@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ceshkegx4qdjf"]
+[gd_scene load_steps=10 format=3 uid="uid://ceshkegx4qdjf"]
 
 [ext_resource type="Script" path="res://zom.gd" id="1_0ascx"]
+[ext_resource type="AudioStream" uid="uid://bpt80jjw8abxt" path="res://hitHurt (1).wav" id="2_8u7dv"]
 
 [sub_resource type="Gradient" id="Gradient_riotr"]
 interpolation_mode = 1
@@ -42,6 +43,12 @@ _data = {
 "hit": SubResource("Animation_8e8pm")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k3p24"]
+streams_count = 1
+playback_mode = 1
+stream_0/stream = ExtResource("2_8u7dv")
+stream_0/weight = 1.0
+
 [node name="zom" type="Sprite2D" groups=["zombie"]]
 texture_filter = 1
 position = Vector2(88, -50)
@@ -60,3 +67,6 @@ shape = SubResource("CircleShape2D_y4rei")
 libraries = {
 "": SubResource("AnimationLibrary_2na8w")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_k3p24")

@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://kmmhlmv4p5tu"]
+
+[ext_resource type="Script" path="res://blood.gd" id="1_gvwx7"]
+
+[sub_resource type="Curve" id="Curve_w7orq"]
+max_value = 50.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.204819, 22.6316), 0.0, 0.0, 0, 0, Vector2(1, 27.8947), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_sjj84"]
+curve = SubResource("Curve_w7orq")
+
+[sub_resource type="Curve" id="Curve_eri7t"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.530121, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4cn4o"]
+curve = SubResource("Curve_eri7t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_orgol"]
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 178.95
+initial_velocity_max = 431.58
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+damping_max = 26.0
+damping_curve = SubResource("CurveTexture_sjj84")
+scale_curve = SubResource("CurveTexture_4cn4o")
+
+[sub_resource type="Gradient" id="Gradient_fvisq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.651613)
+colors = PackedColorArray(0.611765, 0, 0.0823529, 1, 0.611765, 0, 0.0823529, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6qtiq"]
+gradient = SubResource("Gradient_fvisq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.399083, 0.293578)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_orgol")
+texture = SubResource("GradientTexture2D_6qtiq")
+one_shot = true
+explosiveness = 1.0
+visibility_rect = Rect2(0, 0, 0, 0)
+script = ExtResource("1_gvwx7")

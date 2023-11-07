@@ -16,7 +16,6 @@ func _process(delta):
 		var bullet = bull.instantiate()
 		bullet.rotation = rotation
 		bullet.position = Vector2(cos(rotation), sin(rotation)) * 38
-		get_tree().get_first_node_in_group("cam").shake(4)
 		$AnimationPlayer.stop()
 		var part = shot.instantiate()
 		part.emitting = true
