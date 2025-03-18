@@ -1,5 +1,5 @@
 extends Polygon2D
-var bull = preload("res://bullet.tscn")
+var bull = preload("res://ray.tscn")
 var shot = preload("res://shot.tscn")
 
 # Called when the node enters the scene tree for the first time.

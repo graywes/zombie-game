@@ -44,10 +44,9 @@ _data = {
 }
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k3p24"]
-streams_count = 1
 playback_mode = 1
+streams_count = 1
 stream_0/stream = ExtResource("2_8u7dv")
-stream_0/weight = 1.0
 
 [node name="zom" type="Sprite2D" groups=["zombie"]]
 texture_filter = 1

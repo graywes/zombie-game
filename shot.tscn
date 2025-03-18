@@ -25,11 +25,9 @@ curve = SubResource("Curve_sjqi6")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ti5fv"]
 particle_flag_disable_z = true
 spread = 14.68
-gravity = Vector3(0, -10, 0)
 initial_velocity_min = 200.0
 initial_velocity_max = 350.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
+gravity = Vector3(0, -10, 0)
 damping_max = 10.0
 damping_curve = SubResource("CurveTexture_3mmwa")
 scale_min = 0.5
