@@ -17,9 +17,9 @@ func _process(delta):
 		bullet.rotation = rotation
 		bullet.position = Vector2(cos(rotation), sin(rotation)) * 38
 		$AnimationPlayer.stop()
-		var part = shot.instantiate()
-		part.emitting = true
-		$Node2D.add_child(part)
+		#var part = shot.instantiate()
+		#part.emitting = true
+		#$Node2D.add_child(part)
 		$AnimationPlayer.play("shoot")
 		add_sibling(bullet)
 		$Timer.start()
