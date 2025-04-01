@@ -79,7 +79,7 @@ speed_scale = 4.0
 position = Vector2(0, 1)
 
 [node name="Timer" type="Timer" parent="Sprite2D/Polygon2D"]
-wait_time = 0.2
+wait_time = 0.01
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite2D/Polygon2D"]

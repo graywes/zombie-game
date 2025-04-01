@@ -2,15 +2,15 @@ extends Sprite2D
 var health = 10
 var die = preload("res://die.tscn").instantiate()
 var blood = preload("res://blood.tscn").instantiate()
-var speed = randf_range(10, 30)
+var speed = randf_range(10, 40) * 3
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var ran = randf() * 6
 	randomize()
-	position = Vector2(sin(ran), cos(ran)) * (speed * 13 * randf_range(1, 2))
+	position = Vector2(sin(ran), cos(ran)) * (20 * 13 * randf_range(1, 2))
 	print(ran)
-	modulate = Color.WHITE.darkened((speed - 10) / 20)
+	modulate = Color.WHITE.darkened(((speed / 3) - 10) / 30)
 	pass # Replace with function body.
 
 
