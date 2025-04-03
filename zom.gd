@@ -21,6 +21,7 @@ func _process(delta):
 
 func hit(dam):
 	health -= dam
+	$StaticBody2D.free()
 	$AudioStreamPlayer2D.play()
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("hit")
