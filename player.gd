@@ -3,7 +3,7 @@ var enem = preload("res://zom.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for enemy in 20:
+	for enemy in 800:
 		add_sibling.call_deferred(enem.instantiate())
 	if Up.up:
 		$Polygon2D/AudioStreamPlayer.play()

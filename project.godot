@@ -21,7 +21,6 @@ Up="*res://up.gd"
 
 [display]
 
-window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [input]

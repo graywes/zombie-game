@@ -1,5 +1,5 @@
 extends Sprite2D
-var health = 10
+var health = 3
 var die = preload("res://die.tscn").instantiate()
 var blood = preload("res://blood.tscn").instantiate()
 var speed = randf_range(10, 40) * 3
@@ -8,8 +8,8 @@ var speed = randf_range(10, 40) * 3
 func _ready():
 	var ran = randf() * 6
 	randomize()
-	position = Vector2(sin(ran), cos(ran)) * (20 * 13 * randf_range(1, 2))
-	print(ran)
+	position = Vector2(sin(ran), cos(ran)) * (40 * 13 * randf_range(1, 2))
+	#print(ran)
 	modulate = Color.WHITE.darkened(((speed / 3) - 10) / 30)
 	pass # Replace with function body.
 
@@ -21,12 +21,12 @@ func _process(delta):
 
 func hit(dam):
 	health -= dam
-	$StaticBody2D.free()
 	$AudioStreamPlayer2D.play()
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("hit")
 	if health <= 0:
 		print("dead")
+		$StaticBody2D.free()
 		get_tree().get_first_node_in_group("cam").shake(10)
 		die.position = position
 		blood.position = position
